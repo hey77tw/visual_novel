@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://db67jharuruvd"]
+
+[ext_resource type="FontFile" uid="uid://bds33sa0jnnr5" path="res://assets/fonts/jf-openhuninn-2.1.ttf" id="1_pvayc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyomd"]
+bg_color = Color(0.82764, 0.571347, 0.407582, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+default_font = ExtResource("1_pvayc")
+default_font_size = 30
+Panel/styles/panel = SubResource("StyleBoxFlat_kyomd")

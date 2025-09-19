@@ -1,0 +1,245 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctxsf2ewdwvjw"]
+
+[ext_resource type="Script" uid="uid://83px8ywtwgg3" path="res://scripts/main.gd" id="1_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://c2pg3l0l3sfl5" path="res://assets/backgrounds/a-drink-shop.png" id="2_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://cfmoxurn4trwv" path="res://assets/characters/girl-a-happy.png" id="4_o6xl0"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jyhfs")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tbgi4")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CharacterSprite" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 473.0
+offset_top = 82.0
+offset_right = 816.0
+offset_bottom = 660.0
+texture = ExtResource("4_o6xl0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DialogueBg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -287.0
+offset_right = -29.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CharacterName" type="Label" parent="DialogueBg"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -108.0
+offset_right = 190.0
+offset_bottom = -41.0
+grow_vertical = 2
+text = "佩佩"
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueBg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 72.0
+offset_right = -45.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "今天天氣真好"
+
+[node name="ChoicesOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="MenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+text = "選單"
+
+[node name="MenuOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="PauseMenu" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "返回遊戲"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "重新遊戲"
+
+[node name="SoundContainer" type="VBoxContainer" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="BGMSlider" type="HBoxContainer" parent="PauseMenu/VBoxContainer/SoundContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer/SoundContainer/BGMSlider"]
+layout_mode = 2
+text = "背景音樂"
+
+[node name="HSlider" type="HSlider" parent="PauseMenu/VBoxContainer/SoundContainer/BGMSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 0.8
+
+[node name="SFXSlider" type="HBoxContainer" parent="PauseMenu/VBoxContainer/SoundContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer/SoundContainer/SFXSlider"]
+layout_mode = 2
+text = "遊戲音效"
+
+[node name="HSlider" type="HSlider" parent="PauseMenu/VBoxContainer/SoundContainer/SFXSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 0.8
+
+[node name="AboutButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "關於作者"
+
+[node name="AboutPanel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="AboutPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "關於作者"
+horizontal_alignment = 1
+
+[node name="AboutText" type="Label" parent="AboutPanel/VBoxContainer"]
+layout_mode = 2
+text = "
+歡迎大家以這個遊戲模板為基礎
+增加喜歡的功能、替換喜歡的圖片
+讓遊戲變得越來越豐富！
+
+遊戲模板開發者 - 大七"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CloseButton" type="Button" parent="AboutPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "關閉"

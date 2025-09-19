@@ -1,0 +1,110 @@
+:: StoryTitle
+公園相遇
+
+
+:: StoryData
+{
+  "ifid": "D175F4F8-5C90-495D-9797-C984F9FA491C",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "start",
+  "zoom": 1
+}
+
+
+:: dog-happy-end {"position":"975,25","size":"100,100"}
+狗狗結局：你們一起散步，成為了好朋友。
+
+
+:: dog-route-1 {"position":"325,25","size":"100,100"}
+莉莉：「哇！好可愛的狗狗！你養多久了啊？」
+
+你：「其實才養了兩個月而已。」
+
+莉莉：「可以讓我摸摸牠嗎？」
+
+[[當然可以！牠很親人的->dog-route-2a]]
+[[抱歉，牠有點怕生...->dog-route-2b]]
+
+
+:: dog-route-2a {"position":"525,25","size":"100,100"}
+莉莉：「真的好可愛！而且好乖喔～」
+
+你：「對啊，牠很喜歡你呢！」
+
+莉莉：「我也很喜歡狗狗！我們要不要一起散步？」
+
+[[好啊，一起走吧！->dog-happy-end]]
+
+
+:: dog-route-2b {"position":"775,25","size":"100,100"}
+莉莉：「這樣啊...」
+
+[[騙你的啦，牠很喜歡你喔！你來摸摸他吧～->dog-route-2a]]
+[[其實他原本很親人，但最近發生了一些事⋯⋯->feeling-route-3]]
+
+
+:: feeling-happy-end {"position":"975,225","size":"100,100"}
+傾訴結局：你們聊了很久，心情好多了。
+
+
+:: feeling-route-1 {"position":"325,250","size":"100,100"}
+莉莉：「你最近怎麼了？還好嗎？」
+
+你：「喔，沒什麼啦...」
+
+[[只是工作有點累...->feeling-route-2]]
+[[其實是感情問題...->feeling-route-3]]
+
+
+:: feeling-route-2 {"position":"500,250","size":"100,100"}
+莉莉：「工作太忙了嗎？要不要去喝杯咖啡？」
+
+你：「好啊，正好附近有間不錯的咖啡廳。」
+
+[[一起去吧！->feeling-happy-end]]
+
+
+:: feeling-route-3 {"position":"750,250","size":"100,100"}
+莉莉：「欸？是發生什麼事了嗎？」
+
+你：「其實...」
+
+[[我想多聊聊...->feeling-happy-end]]
+[[我很想見到你，所以才在這裡等你->stalker-route-2]]
+
+
+:: stalker-bad-end {"position":"975,475","size":"100,100"}
+壞結局：你被當成了跟蹤狂...
+
+
+:: stalker-route-1 {"position":"300,525","size":"100,100"}
+莉莉：「咦？你怎麼知道我會在這裡？」
+
+你：「這個嘛...」
+
+[[我常常看到你在這裡散步->stalker-route-2]]
+[[只是碰巧啦！->stalker-route-3]]
+
+
+:: stalker-route-2 {"position":"500,500","size":"100,100"}
+莉莉：「你該不會一直在觀察我吧？」
+
+[[...->stalker-bad-end]]
+
+
+:: stalker-route-3 {"position":"750,500","size":"100,100"}
+莉莉：「真的嗎？怎麼感覺怪怪的...」
+
+[[其實我喜歡你很久了...->stalker-route-2]]
+[[你想太多了啦～我才沒那麼閒，最近可是很忙的！->feeling-route-1]]
+
+
+:: start {"position":"100,150","size":"100,100"}
+莉莉：「哈囉～好久不見！你也來公園散步嗎？」
+
+你：「嗨，好久不見⋯⋯」
+
+[[我來溜狗啦->dog-route-1]]
+[[對啊，最近心情不好，來散散心->feeling-route-1]]
+[[對啊，我想說可能會遇見你->stalker-route-1]]

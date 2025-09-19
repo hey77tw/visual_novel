@@ -1,0 +1,61 @@
+:: StoryTitle
+my story
+
+
+:: StoryData
+{
+  "ifid": "7A7B0407-CDDC-42A4-A7D3-3D0922DB6252",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "start",
+  "zoom": 1
+}
+
+
+:: badroute {"position":"575,425","size":"100,100"}
+怎麼了嗎?需要聊聊嗎?
+
+[[其實是我家的狗生病了]]
+[[我不想講話]]
+
+
+:: happyroute {"position":"700,425","size":"100,100"}
+那我們一起去公園散步吧!
+
+[[好啊]]
+[[我不想要]]
+
+
+:: normalroute {"position":"825,425","size":"100,100"}
+那要一起去吃好吃的嗎?
+
+[[好啊]]
+[[先不用]]
+
+
+:: start {"position":"700,300","size":"100,100"}
+今天是個好天氣，你今天還好嗎?
+
+[[我覺得今天心情不錯->happyroute]]
+[[我覺得還好->normalroute]]
+[[我不好->badroute]]
+
+
+:: 先不用 {"position":"950,550","size":"100,100"}
+普通的結局
+
+
+:: 其實是我家的狗生病了 {"position":"450,550","size":"100,100"}
+壞結局
+
+
+:: 好啊 {"position":"700,550","size":"100,100"}
+開心的結局
+
+
+:: 我不想要 {"position":"825,550","size":"100,100"}
+難過的結局
+
+
+:: 我不想講話 {"position":"575,550","size":"100,100"}
+不好的結局
