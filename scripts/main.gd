@@ -18,6 +18,10 @@ const CHOICE_BRACKET_LENGTH = 4  # 選項標記 "[[" 和 "]]" 的總長度
 const CHOICE_ARROW_LENGTH = 2  # 選項箭頭 "->" 的長度
 const SPLIT_LIMIT = 1  # 字串分割的最大次數
 
+# ===== 資源管理器 =====
+const ResourceManagerScript = preload("res://scripts/resource_manager.gd")
+var resource_manager = null  # 資源管理器
+
 # ===== 音效播放器 =====
 @onready var bgm_player = AudioStreamPlayer.new()  # 背景音樂播放器
 @onready var sfx_player = AudioStreamPlayer.new()  # 音效播放器
@@ -64,6 +68,10 @@ var typing_timer = 0.0  # 打字效果的計時器
 
 # ===== 內建函式 =====
 func _ready():
+	# 創建並初始化資源管理器
+	resource_manager = ResourceManagerScript.new()
+	add_child(resource_manager)
+	
 	# 將音效播放器加入場景樹
 	add_child(bgm_player)
 	add_child(sfx_player)
@@ -80,9 +88,18 @@ func _ready():
 	bgm_slider.value_changed.connect(_on_bgm_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	
+	# 等待資源載入完成後再開始遊戲
+	await _wait_for_resources()
+	
 	# 載入故事檔案並開始遊戲
 	load_story()
 	show_passage("start")
+
+# ===== 等待資源載入 =====
+func _wait_for_resources():
+	# 等待資源管理器載入完成
+	while not resource_manager.is_resources_ready():
+		await get_tree().process_frame
 
 func _process(delta):
 	# 處理打字效果的逐字顯示
@@ -122,8 +139,8 @@ func _input(event):
 
 # ===== 故事系統 =====
 func load_story():
-	# 載入並解析故事檔案，將內容儲存到 story_data 字典中
-	var story_resource = load("res://assets/story/my_story.tres") as StoryResource
+	# 從資源管理器獲取故事資源
+	var story_resource = resource_manager.get_story_resource()
 	if not story_resource:
 		print("Error: Could not load story file")
 		return
@@ -223,13 +240,12 @@ func update_scene(passage_name: String):
 			character_sprite.hide()
 
 func set_background(image: String, is_ending: bool = false):
-	# 設定場景背景圖片
-	var path = "res://assets/" + ("endings/" if is_ending else "backgrounds/") + image
-	background.texture = load(path)
+	# 從資源管理器獲取背景圖片（使用緩存）
+	background.texture = resource_manager.get_background(image, is_ending)
 
 func set_character(image: String):
-	# 設定角色表情圖片
-	character_sprite.texture = load("res://assets/characters/" + image)
+	# 從資源管理器獲取角色圖片（使用緩存）
+	character_sprite.texture = resource_manager.get_character(image)
 	character_sprite.show()
 
 # ===== 對話系統 =====
@@ -286,19 +302,19 @@ func skip_typing():
 
 # ===== 音效系統 =====
 func play_sfx(sound_name: String):
-	# 播放音效
+	# 播放音效（使用緩存）
 	if sfx_volume <= 0:
 		return
-	var sound = load("res://assets/sounds/" + sound_name)
+	var sound = resource_manager.get_sound(sound_name)
 	if sound:
 		sfx_player.stream = sound
 		sfx_player.play()
 
 func play_ambient(sound_name: String):
-	# 播放環境音效
+	# 播放環境音效（使用緩存）
 	if bgm_volume <= 0:
 		return
-	var sound = load("res://assets/sounds/" + sound_name)
+	var sound = resource_manager.get_sound(sound_name)
 	if sound:
 		ambient_player.stream = sound
 		ambient_player.play()
